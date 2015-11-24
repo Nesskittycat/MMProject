@@ -3,7 +3,6 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-
               >
 
     <TextView
@@ -64,7 +63,7 @@
         android:layout_toEndOf="@+id/FirstNameEditText"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="30dp"
-        android:layout_alignParentEnd="false"/>
+        android:layout_alignParentRight="false"/>
 
 
 </RelativeLayout>
