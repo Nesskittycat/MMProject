@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              >
+    >
 
     <TextView
         android:layout_marginLeft="10dp"
@@ -168,7 +168,8 @@
         android:layout_marginTop="56dp"
         android:background="#FFBFEAFF"
         android:textStyle="bold"
-        />
+        android:nestedScrollingEnabled="false"
+        android:onClick="onClick"/>
 
 
 </RelativeLayout>
