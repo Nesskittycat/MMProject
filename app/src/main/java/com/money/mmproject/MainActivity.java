@@ -23,18 +23,18 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
     public void onclickWeekly(View view){
-        Intent myIntent = new Intent(MainActivity.this,xxx_PUTYOURCLASSNAMEINHERE_xxx.class);
-        MainActivity.this.startActivity(myIntent);
+        //Intent myIntent = new Intent(MainActivity.this,xxx_PUTYOURCLASSNAMEINHERE_xxx.class);
+        //MainActivity.this.startActivity(myIntent);
     }
 
     public void onclickAnnualy(View view){
-        Intent myIntent = new Intent(MainActivity.this,xxx_PUTYOURCLASSNAMEINHERE_xxx.class);
-        MainActivity.this.startActivity(myIntent);
+        //Intent myIntent = new Intent(MainActivity.this,xxx_PUTYOURCLASSNAMEINHERE_xxx.class);
+        //MainActivity.this.startActivity(myIntent);
     }
 
     public void onclickTransaction(View view){
-        Intent myIntent = new Intent(MainActivity.this,xxx_PUTYOURCLASSNAMEINHERE_xxx.class);
-        MainActivity.this.startActivity(myIntent);
+        //Intent myIntent = new Intent(MainActivity.this,xxx_PUTYOURCLASSNAMEINHERE_xxx.class);
+        //MainActivity.this.startActivity(myIntent);
     }
 
     @Override
