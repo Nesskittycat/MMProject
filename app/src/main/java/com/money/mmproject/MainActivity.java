@@ -1,6 +1,9 @@
 package com.money.mmproject;
 
+<<<<<<< HEAD
 import android.content.DialogInterface;
+=======
+>>>>>>> origin/NessaBranch
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,12 +42,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+<<<<<<< HEAD
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
             return true;
+=======
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        //int id = item.getItemId();
+        switch(item.getItemId()) {
+            case R.id.action_user_profile:
+                Intent userProfileIntent = new Intent(getApplicationContext(),
+                        UserProfileActivity.class);
+                startActivity(userProfileIntent);
+            default:
+                return super.onOptionsItemSelected(item);
+>>>>>>> origin/NessaBranch
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
