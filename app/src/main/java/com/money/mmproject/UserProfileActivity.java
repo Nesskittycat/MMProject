@@ -6,10 +6,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-/**
- * Created by Nessa on 11/20/15.
- */
+
 public class UserProfileActivity extends AppCompatActivity {
 
 
@@ -20,16 +19,17 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_user_profile);
-
-    }
-
-    public void onClick(View view) {
-        switch(view.getId()) {
-            case R.id.SaveButton:
+        Button btn = (Button) findViewById(R.id.SaveButton);
+        btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "User Profile Saved",Toast.LENGTH_LONG).show();
                 return;
+            }
+        });
 
-        }
     }
+
 
 
 }
