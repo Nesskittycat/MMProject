@@ -163,13 +163,13 @@
         android:layout_height="wrap_content"
         android:text="Save"
         android:id="@+id/SaveButton"
-        android:layout_below="@+id/SpendingTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="57dp"
         android:background="#FFBFEAFF"
         android:textStyle="bold"
         android:nestedScrollingEnabled="false"
-        android:onClick="onClick"/>
+        android:onClick="onClick"
+        android:layout_below="@+id/SpendingTextView"
+        android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>
