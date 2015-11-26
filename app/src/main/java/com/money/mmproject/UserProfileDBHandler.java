@@ -6,9 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Nessa on 11/23/15.
- */
+
 public class UserProfileDBHandler extends SQLiteOpenHelper {
     //Database Version
     private static final int DATABASE_VERSION = 1;
@@ -62,10 +60,6 @@ public class UserProfileDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void delete(UserProfileDBHandler updb) {
-        SQLiteDatabase writeDB = updb.getWritableDatabase();
-        writeDB.delete(TABLE_NAME, null, null);
-    }
 
     public void update(UserProfileDBHandler updb,String first, String last,
                        double income, double saving, double spending) {
@@ -94,8 +88,5 @@ public class UserProfileDBHandler extends SQLiteOpenHelper {
         Cursor CR = readDB.query(TABLE_NAME, columns, null,null,null,null,null);
         return CR;
     }
-
-
-
 
 }

@@ -1,11 +1,9 @@
 package com.money.mmproject;
 
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,6 +16,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private EditText IncomeText;
     private EditText SavingText;
     private EditText SpendingText;
+    private UserProfileDBHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +28,17 @@ public class UserProfileActivity extends AppCompatActivity {
         IncomeText = (EditText) findViewById(R.id.IncomeEditText);
         SavingText = (EditText) findViewById(R.id.SavingEditText);
         SpendingText = (EditText) findViewById(R.id.SpendingEditText);
-        UserProfileDBHandler db = new UserProfileDBHandler(getApplication());
+        db = new UserProfileDBHandler(getApplication());
         Cursor CR = db.getInformation(db);
-        boolean data = false;
-        if(CR.moveToFirst()){
-            System.out.println("THIS HAS DATA.");
-            data = true;
-        }else{
-            System.out.println("THIS HAS NO DATA");
-        }
 
-        if (data) {
-            db.delete(db);
+        //Set text to the edit texts from database
+        if(CR.moveToFirst()){
+            FirstNameText.setText(CR.getString(0));
+            LastNameText.setText(CR.getString(1));
+            IncomeText.setText(CR.getString(2));
+            SavingText.setText(CR.getString(3));
+            SpendingText.setText(CR.getString(4));
+
         }
 
         btn.setOnClickListener(new View.OnClickListener(){
@@ -52,6 +50,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 double saving = Double.parseDouble(SavingText.getText().toString());
                 double spending = Double.parseDouble(SpendingText.getText().toString());
 
+                //Check every box input
                 if (FirstNameText.getText().toString().trim().length() > 0
                         && LastNameText.getText().toString().trim().length() > 0
                         && IncomeText.getText().toString().trim().length() > 0
@@ -59,7 +58,6 @@ public class UserProfileActivity extends AppCompatActivity {
                         && SpendingText.getText().toString().trim().length() > 0) {
 
                     //Database handler
-                    UserProfileDBHandler db = new UserProfileDBHandler(getApplication());
                     Cursor CR = db.getInformation(db);
                     if(CR.moveToFirst()){
                         System.out.println("THIS HAS DATA.");
