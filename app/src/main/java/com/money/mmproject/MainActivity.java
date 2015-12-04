@@ -1,11 +1,13 @@
 package com.money.mmproject;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +16,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ImageView p=new ImageView(this);
+        p=(ImageView)findViewById(R.id.logo);
+
+        int resource_id= getResources().getIdentifier("logo", "drawable", getPackageName());
+        //InputStream inputStream = getContext().getAssets().open(animal.get(position).getFilename());
+        //Drawable drawable2 = Drawable.createFromStream(inputStream, null);
+        Drawable drawable = getResources().getDrawable(resource_id);
+        p.setBackgroundColor(0);
+        p.setImageDrawable(drawable);
     }
 
     @Override
@@ -32,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onclickTransaction(View view){
-        //Intent myIntent = new Intent(MainActivity.this,xxx_PUTYOURCLASSNAMEINHERE_xxx.class);
-        //MainActivity.this.startActivity(myIntent);
+        Intent myIntent = new Intent(MainActivity.this,addTransaction.class);
+        MainActivity.this.startActivity(myIntent);
     }
 
     @Override
