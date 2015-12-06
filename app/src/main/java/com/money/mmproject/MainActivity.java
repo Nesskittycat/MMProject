@@ -9,13 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ImageView p=new ImageView(this);
         p=(ImageView)findViewById(R.id.logo);
 
@@ -59,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent userProfileIntent = new Intent(getApplicationContext(),
                         UserProfileActivity.class);
                 startActivity(userProfileIntent);
+            case R.id.update_online:
+                Intent updateOnline = new Intent(getApplicationContext(),
+                        updateActivity.class);
+                startActivity(updateOnline);
             default:
                 return super.onOptionsItemSelected(item);
         }
