@@ -99,7 +99,7 @@
         android:onClick="onclickTransaction" />
 
     <TextView
-        android:text="Build a better money habbit"
+        android:text="Build a better money habit"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:textColor="#ffffff"

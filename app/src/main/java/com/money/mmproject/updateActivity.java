@@ -1,5 +1,7 @@
 package com.money.mmproject;
 
+
+import android.app.Application;
 import android.content.Intent;
 import android.database.Cursor;
 
@@ -9,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.parse.Parse;
 import com.parse.ParseObject;
 
 
@@ -23,8 +24,7 @@ public class updateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update);
 
 
-        Parse.initialize(this, "sb86WYyd0l1igfZY77sTtEWb0TVn3g067JORyVT6",
-                "uQTRuM7tHPVzgctBOYQO6LmFpSBCNbAKYaFS8OmA");
+
         RegisterUserButton = (Button) findViewById(R.id.RegisterUserButton);
         updateTransactionsButton = (Button) findViewById(R.id.UpdateTransactionsButton);
         db = new TransactionsDB(getApplication());
