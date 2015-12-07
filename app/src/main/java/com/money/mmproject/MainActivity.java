@@ -59,10 +59,12 @@ public class MainActivity extends AppCompatActivity {
                 Intent userProfileIntent = new Intent(getApplicationContext(),
                         UserProfileActivity.class);
                 startActivity(userProfileIntent);
+                return true;
             case R.id.update_online:
                 Intent updateOnline = new Intent(getApplicationContext(),
                         updateActivity.class);
                 startActivity(updateOnline);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

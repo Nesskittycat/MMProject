@@ -23,7 +23,7 @@ public class TransactionsDB extends SQLiteOpenHelper {
 
         private static final String DATABASE_TABLE_USERDATA = "userdata";
 
-
+        private static TransactionsDB helper;
 
 
         private SQLiteDatabase mDB;
@@ -66,4 +66,12 @@ public class TransactionsDB extends SQLiteOpenHelper {
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         }
+
+        public Cursor getInformation(TransactionsDB updb) {
+            SQLiteDatabase readDB = updb.getReadableDatabase();
+            String[] columns = {FIELD_DATE,FIELD_AMOUNT,FIELD_CATEGORY,FIELD_DESCRIPTION};
+            Cursor CR = readDB.query(DATABASE_TABLE, columns, null,null,null,null,null);
+            return CR;
+        }
+
 }
