@@ -15,8 +15,24 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register User Online"
-        android:id="@+id/RegisterUserButton"
-        android:onClick="updateUser"
+        android:text="Retrieve Data"
+        android:id="@+id/RetrieveButton"
         android:layout_marginTop="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register User / Log In"
+        android:id="@+id/RegisterUserButton"
+        android:onClick="registerUser"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log out"
+        android:id="@+id/LogOutButton"
+        android:layout_marginTop="20dp"
+        android:onClick="logoutUser"
+        />
 </LinearLayout>

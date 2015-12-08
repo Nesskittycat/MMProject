@@ -9,10 +9,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+
 public class UserProfileActivity extends AppCompatActivity {
 
-    private EditText UserNameText;
-    private EditText NameText;
+    private EditText FirstNameText;
+    private EditText LastNameText;
     private EditText IncomeText;
     private EditText SavingText;
     private EditText SpendingText;
@@ -23,8 +24,8 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         Button btn = (Button) findViewById(R.id.SaveButton);
-        UserNameText = (EditText) findViewById(R.id.UserNameEditText);
-        NameText = (EditText) findViewById(R.id.NameEditText);
+        FirstNameText = (EditText) findViewById(R.id.FirstNameEditText);
+        LastNameText = (EditText) findViewById(R.id.LastNameEditText);
         IncomeText = (EditText) findViewById(R.id.IncomeEditText);
         SavingText = (EditText) findViewById(R.id.SavingEditText);
         SpendingText = (EditText) findViewById(R.id.SpendingEditText);
@@ -33,8 +34,8 @@ public class UserProfileActivity extends AppCompatActivity {
 
         //Set text to the edit texts from database
         if(CR.moveToFirst()){
-            UserNameText.setText(CR.getString(0));
-            NameText.setText(CR.getString(1));
+            FirstNameText.setText(CR.getString(0));
+            LastNameText.setText(CR.getString(1));
             IncomeText.setText(CR.getString(2));
             SavingText.setText(CR.getString(3));
             SpendingText.setText(CR.getString(4));
@@ -44,15 +45,15 @@ public class UserProfileActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String first = UserNameText.getText().toString();
-                String last = NameText.getText().toString();
+                String first = FirstNameText.getText().toString();
+                String last = LastNameText.getText().toString();
                 double income = Double.parseDouble(IncomeText.getText().toString());
                 double saving = Double.parseDouble(SavingText.getText().toString());
                 double spending = Double.parseDouble(SpendingText.getText().toString());
 
                 //Check every box input
-                if (UserNameText.getText().toString().trim().length() > 0
-                        && NameText.getText().toString().trim().length() > 0
+                if (FirstNameText.getText().toString().trim().length() > 0
+                        && LastNameText.getText().toString().trim().length() > 0
                         && IncomeText.getText().toString().trim().length() > 0
                         && SavingText.getText().toString().trim().length() > 0
                         && SpendingText.getText().toString().trim().length() > 0) {
@@ -82,9 +83,6 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
     }
-
-
-
 
 
 }
