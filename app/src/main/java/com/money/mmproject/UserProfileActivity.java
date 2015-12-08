@@ -61,12 +61,12 @@ public class UserProfileActivity extends AppCompatActivity {
                     //Database handler
                     Cursor CR = db.getInformation(db);
                     if(CR.moveToFirst()){
-                        System.out.println("THIS HAS DATA.");
+                        //If there is a data, update the information
                         db.update(db, first, last, income, saving, spending);
                         System.out.println(CR.getString(0) + " " + CR.getString(1));
                     }else{
-                        //insert new values into database
-                        System.out.println("THIS HAS NO DATA");
+                        //insert new values into database when there is no data.
+
                         db.insert(first, last, income, saving, spending);
                     }
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,9 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-/**
- * Created by Lukatz on 23.11.2015.
- */
+
 public class addTransaction extends AppCompatActivity {
 
     ArrayList<String> items = new ArrayList<String>();
@@ -47,7 +46,6 @@ public class addTransaction extends AppCompatActivity {
         description = (EditText) findViewById(R.id.description);
 
 
-
         save = (Button) findViewById(R.id.submit);
         save.setOnClickListener(new Button.OnClickListener() {
 
@@ -69,7 +67,16 @@ public class addTransaction extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Transaction Saved", Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

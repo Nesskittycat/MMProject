@@ -1,5 +1,6 @@
 package com.money.mmproject;
 
+
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
@@ -47,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.startActivity(myIntent);
     }
 
+    public void onClickHistory(View view) {
+        Intent myIntent = new Intent(MainActivity.this, HistoryActivity.class);
+        MainActivity.this.startActivity(myIntent);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
