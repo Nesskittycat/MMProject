@@ -60,14 +60,14 @@ public class TransactionsDB extends SQLiteOpenHelper {
 
         public Cursor getInformation(TransactionsDB updb) {
             SQLiteDatabase readDB = updb.getReadableDatabase();
-            String[] columns = {KEY_ID, FIELD_DATE,FIELD_AMOUNT,FIELD_CATEGORY,FIELD_DESCRIPTION};
+            String[] columns = { FIELD_DATE,FIELD_AMOUNT,FIELD_CATEGORY,FIELD_DESCRIPTION};
             Cursor CR = readDB.query(DATABASE_TABLE, columns, null,null,null,null,null);
             return CR;
         }
 
         public Cursor getInformationById(TransactionsDB updb, int id) {
             SQLiteDatabase readDB = updb.getReadableDatabase();
-            String[] columns = {KEY_ID, FIELD_DATE,FIELD_AMOUNT,FIELD_CATEGORY,FIELD_DESCRIPTION};
+            String[] columns = { FIELD_DATE,FIELD_AMOUNT,FIELD_CATEGORY,FIELD_DESCRIPTION};
             String where = KEY_ID+"="+id;
             Cursor CR = readDB.query(true, DATABASE_TABLE,columns, where, null,null,null,null,null);
             return CR;

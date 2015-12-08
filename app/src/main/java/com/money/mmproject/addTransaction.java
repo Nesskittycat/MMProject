@@ -54,7 +54,7 @@ public class addTransaction extends AppCompatActivity {
                 Calendar c = Calendar.getInstance();
                 System.out.println("Current time => " + c.getTime());
 
-                SimpleDateFormat df = new SimpleDateFormat("ddMMyyyyhhmmss");
+                SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 
                 ContentValues values = new ContentValues();
                 values.put("transdate",df.format(c.getTime()));
