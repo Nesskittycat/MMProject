@@ -25,12 +25,14 @@ public class updateActivity extends AppCompatActivity {
     private Button RegisterUserButton;
     private Button updateTransactionsButton;
     private Button logoutButton;
+    private Button RetrieveButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
         RegisterUserButton = (Button) findViewById(R.id.RegisterUserButton);
         updateTransactionsButton = (Button) findViewById(R.id.UpdateTransactionsButton);
+        RetrieveButton = (Button) findViewById(R.id.RetrieveButton);
         logoutButton = (Button) findViewById(R.id.LogOutButton);
     /*    ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "bar");
@@ -69,10 +71,20 @@ public class updateActivity extends AppCompatActivity {
         updateTransactionsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(getApplicationContext(),
+                        "The function is not available at the moment.",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
+        RetrieveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),
+                        "The function is not available at the moment.",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
 
         RegisterUserButton.setOnClickListener(new View.OnClickListener() {
             @Override

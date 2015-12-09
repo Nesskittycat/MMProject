@@ -1,29 +1,72 @@
 package com.money.mmproject;
 
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    private TextView MoneySpentValueTextView;
+    private TransactionsDB db;
+    private double spentAmount = 0;
+    private Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageView p=new ImageView(this);
-        p=(ImageView)findViewById(R.id.logo);
+        ImageView p = new ImageView(this);
+        p = (ImageView) findViewById(R.id.logo);
 
+        MoneySpentValueTextView = (TextView) findViewById(R.id.MoneySpentValueTextView);
+        db = new TransactionsDB(getApplication());
+        Cursor CR = db.getInformation(db);
+        Calendar now = Calendar.getInstance();
+
+        if (CR.moveToFirst()) {
+            do {
+                String month = "";
+                String year = "";
+                String holder = "";
+                // MM/dd/yyyy
+                holder = CR.getString(0);
+                System.out.println(holder.indexOf("/"));
+                month = holder.substring(0, holder.indexOf("/"));
+                year = holder.substring(holder.length() - 4);
+                if (month.equals(Integer.toString(now.get(Calendar.MONTH) + 1))
+                        && year.equals(Integer.toString(now.get(Calendar.YEAR)))) {
+                    spentAmount += Integer.parseInt(CR.getString(1));
+                } else {
+                    CR.getString(1);
+                }
+                CR.getString(2);
+                CR.getString(3);
+            } while (CR.moveToNext());
+        }
+
+        if (spentAmount == 0) {
+            MoneySpentValueTextView.setText("$ 0.00");
+        }
+        else{
+            MoneySpentValueTextView.setText("$ " + spentAmount);
+        }
         int resource_id= getResources().getIdentifier("logo", "drawable", getPackageName());
-        //InputStream inputStream = getContext().getAssets().open(animal.get(position).getFilename());
-        //Drawable drawable2 = Drawable.createFromStream(inputStream, null);
+
         Drawable drawable = getResources().getDrawable(resource_id);
         p.setBackgroundColor(0);
         p.setImageDrawable(drawable);
@@ -52,13 +95,40 @@ public class MainActivity extends AppCompatActivity {
     public void onClickHistory(View view) {
         Intent myIntent = new Intent(MainActivity.this, HistoryActivity.class);
         MainActivity.this.startActivity(myIntent);
+
     }
 
     public void onClickClearHistory(View view) {
-        TransactionsDB db = new TransactionsDB(getApplicationContext());
-        db.del();
-        Toast.makeText(getApplicationContext(), "The history has been cleared.",
-                Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+        //set title
+        alertDialogBuilder.setTitle("Delete: ");
+        alertDialogBuilder.setMessage("Do you want to delete the history?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TransactionsDB db = new TransactionsDB(getApplicationContext());
+                        db.del();
+                        Toast.makeText(getApplicationContext(), "The history has been cleared.",
+                                Toast.LENGTH_SHORT).show();
+                        finish();
+                        Intent myIntent = new Intent(MainActivity.this, MainActivity.class);
+                        startActivity(myIntent);
+
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -71,15 +141,46 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_user_profile:
                 Intent userProfileIntent = new Intent(getApplicationContext(),
                         UserProfileActivity.class);
+
                 startActivity(userProfileIntent);
                 return true;
             case R.id.update_online:
                 Intent updateOnline = new Intent(getApplicationContext(),
                         updateActivity.class);
+
                 startActivity(updateOnline);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+        //set title
+        alertDialogBuilder.setTitle("Exit:");
+        alertDialogBuilder.setMessage("Do you want to exit the application?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        finish();
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
+
+        return super.onKeyDown(keyCode, event);
     }
 }
