@@ -59,7 +59,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearLayout">
+        android:layout_below="@+id/linearLayout"
+        android:id="@+id/linearLayout4">
 
         <TextView
             android:layout_width="wrap_content"
@@ -113,6 +114,17 @@
         android:text="History"
         android:id="@+id/button"
         android:onClick="onClickHistory"
+        android:layout_above="@+id/ClearHistoryButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Clear History"
+        android:id="@+id/ClearHistoryButton"
         android:layout_above="@+id/atransaction"
-        android:layout_centerHorizontal="true"/>
+        android:onClick="onClickClearHistory"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 </RelativeLayout>

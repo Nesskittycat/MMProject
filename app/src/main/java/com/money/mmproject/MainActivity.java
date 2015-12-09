@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -51,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
     public void onClickHistory(View view) {
         Intent myIntent = new Intent(MainActivity.this, HistoryActivity.class);
         MainActivity.this.startActivity(myIntent);
+    }
+
+    public void onClickClearHistory(View view) {
+        TransactionsDB db = new TransactionsDB(getApplicationContext());
+        db.del();
+        Toast.makeText(getApplicationContext(), "The history has been cleared.",
+                Toast.LENGTH_SHORT).show();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

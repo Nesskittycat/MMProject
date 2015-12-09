@@ -6,10 +6,15 @@ import static com.money.mmproject.Constants.THIRD_COLUMN;
 import static com.money.mmproject.Constants.FOURTH_COLUMN;
 import static com.money.mmproject.Constants.FIFTH_COLUMN;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +29,9 @@ import java.util.HashMap;
 public class HistoryActivity extends AppCompatActivity {
     private ArrayList<HashMap<String, String>> list;
     private TransactionsDB db;
+    private Context context = this;
+    private int pos = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +42,6 @@ public class HistoryActivity extends AppCompatActivity {
 
 
         db = new TransactionsDB(getApplication());
-
         Cursor CR = db.getInformation(db);
         Cursor checkNull = db.getInformation(db);
 
@@ -43,12 +50,12 @@ public class HistoryActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
         if (CR.moveToFirst()) {
-            int i =0;
+            int i =1;
             do {
                 HashMap<String,String> temp=new HashMap<String, String>();
 
 
-                //id
+                //id start from 0 in the database but change to 1 when showing to the user
                 temp.put(FIRST_COLUMN, Integer.toString(i) );
                 //date
                 temp.put(SECOND_COLUMN, CR.getString(0));
@@ -63,48 +70,89 @@ public class HistoryActivity extends AppCompatActivity {
             } while (CR.moveToNext());
         }
 
-
-
- /*       temp.put(FIRST_COLUMN, "1");
-        temp.put(SECOND_COLUMN, "date2");
-        temp.put(THIRD_COLUMN, "Category");
-        temp.put(FOURTH_COLUMN, "0.00");
-        temp.put(FIFTH_COLUMN, "SomeInfo1");
-        list.add(temp);
-
-        HashMap<String,String> temp2=new HashMap<String, String>();
-        temp2.put(FIRST_COLUMN, "2");
-        temp2.put(SECOND_COLUMN, "date");
-        temp2.put(THIRD_COLUMN, "Category");
-        temp2.put(FOURTH_COLUMN, "0.00");
-        temp2.put(FIFTH_COLUMN, "SomeInfo2");
-        list.add(temp2);
-
-        HashMap<String,String> temp3=new HashMap<String, String>();
-        temp3.put(FIRST_COLUMN, "3");
-        temp3.put(SECOND_COLUMN, "date1");
-        temp3.put(THIRD_COLUMN, "Category");
-        temp3.put(FOURTH_COLUMN, "0.00");
-        temp3.put(FIFTH_COLUMN, "SomeInfo3");
-        list.add(temp3);
-        */
-
         ListViewAdapter adapter=new ListViewAdapter(this, list);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
+            boolean option = true;
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id)
             {
-                int pos=position+1;
-                Toast.makeText(HistoryActivity.this, Integer.toString(pos) + " Clicked", Toast.LENGTH_SHORT).show();
+                pos = position+1;
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        context);
+                //set title
+                alertDialogBuilder.setTitle("Delete:");
+                alertDialogBuilder.setMessage("Do you want to delete the item with the same information?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                int am = 0;
+                                String category = "";
+                                String des = "";
+                                String date = "";
+
+
+                                Cursor c = db.getInformation(db);
+                                int j = 1;
+                                //if this button is clicked, proceed.
+                                if (c.moveToFirst()) {
+                                    do {
+                                        if (j == pos) {
+                                            date = c.getString(0);
+                                            am = Integer.parseInt(c.getString(1));
+                                            category = c.getString(2);
+                                            des = c.getString(3);
+                                            j++;
+                                            break;
+                                        }
+                                        c.getString(0);
+                                        c.getString(1);
+                                        c.getString(2);
+                                        c.getString(3);
+                                        j++;
+                                    } while (c.moveToNext()) ;
+                                }
+
+                                db.delete_byRow(date, am, category, des);
+                                Intent intent1 = new Intent(HistoryActivity.this,
+                                        HistoryActivity.class);
+                                finish();
+                                startActivity(intent1);
+
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
+
             }
+
 
         });
     }
 
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent a = new Intent(HistoryActivity.this,MainActivity.class);
+            a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(a);
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 
 

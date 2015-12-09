@@ -53,7 +53,6 @@ public class TransactionsDB extends SQLiteOpenHelper {
             return cnt;
         }
 
-
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         }
@@ -65,16 +64,14 @@ public class TransactionsDB extends SQLiteOpenHelper {
             return CR;
         }
 
-        public Cursor getInformationById(TransactionsDB updb, int id) {
-            SQLiteDatabase readDB = updb.getReadableDatabase();
-            String[] columns = { FIELD_DATE,FIELD_AMOUNT,FIELD_CATEGORY,FIELD_DESCRIPTION};
-            String where = KEY_ID+"="+id;
-            Cursor CR = readDB.query(true, DATABASE_TABLE,columns, where, null,null,null,null,null);
-            return CR;
-        }
+        public void delete_byRow(String date, int am,String category, String des){
+            System.out.println("CATEGORY: " + category );
+            System.out.println("DATE: " + date);
+            mDB.delete(DATABASE_TABLE, FIELD_DATE + "= \"" + date + "\" " +
+                    " AND " + FIELD_AMOUNT + "=" + am + " " +
+                    " AND " + FIELD_CATEGORY + "= \"" + category + "\" " +
+                    " AND " + FIELD_DESCRIPTION + "=" + "\"" + des + "\"", null);
 
-        public void delete_byID(int id){
-            mDB.delete(DATABASE_TABLE, KEY_ID + "=" + id, null);
         }
 
 }

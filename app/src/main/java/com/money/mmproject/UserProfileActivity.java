@@ -63,10 +63,8 @@ public class UserProfileActivity extends AppCompatActivity {
                     if(CR.moveToFirst()){
                         //If there is a data, update the information
                         db.update(db, first, last, income, saving, spending);
-                        System.out.println(CR.getString(0) + " " + CR.getString(1));
                     }else{
                         //insert new values into database when there is no data.
-
                         db.insert(first, last, income, saving, spending);
                     }
 
