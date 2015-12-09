@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Calendar;
 
 
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 year = holder.substring(holder.length() - 4);
                 if (month.equals(Integer.toString(now.get(Calendar.MONTH) + 1))
                         && year.equals(Integer.toString(now.get(Calendar.YEAR)))) {
-                    spentAmount += Integer.parseInt(CR.getString(1));
+                    spentAmount += Double.parseDouble(CR.getString(1));
                 } else {
                     CR.getString(1);
                 }
@@ -63,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
             MoneySpentValueTextView.setText("$ 0.00");
         }
         else{
-            MoneySpentValueTextView.setText("$ " + spentAmount);
+            String spent = NumberFormat.getCurrencyInstance().format(spentAmount);
+            spent = spent.replaceAll("\\.00", "");
+            MoneySpentValueTextView.setText( spent);
         }
         int resource_id= getResources().getIdentifier("logo", "drawable", getPackageName());
 
