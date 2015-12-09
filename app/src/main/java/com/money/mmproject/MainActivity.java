@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 year = holder.substring(holder.length() - 4);
                 if (month.equals(Integer.toString(now.get(Calendar.MONTH) + 1))
                         && year.equals(Integer.toString(now.get(Calendar.YEAR)))) {
-                    spentAmount += Integer.parseInt(CR.getString(1));
+                    spentAmount += Double.parseDouble(CR.getString(1));
                 } else {
                     CR.getString(1);
                 }
