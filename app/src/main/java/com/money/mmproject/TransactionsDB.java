@@ -67,10 +67,19 @@ public class TransactionsDB extends SQLiteOpenHelper {
         public void delete_byRow(String date, double am,String category, String des){
             System.out.println("CATEGORY: " + category );
             System.out.println("DATE: " + date);
-            mDB.delete(DATABASE_TABLE, FIELD_DATE + "= \"" + date + "\" " +
-                    " AND " + FIELD_AMOUNT + "=" + am + " " +
-                    " AND " + FIELD_CATEGORY + "= \"" + category + "\" " +
-                    " AND " + FIELD_DESCRIPTION + "=" + "\"" + des + "\"", null);
+            System.out.println("AMOUNT: " + am);
+            if (am == 0) {
+                mDB.delete(DATABASE_TABLE, FIELD_DATE + "= \"" + date + "\" " +
+                        " AND " + FIELD_AMOUNT + "=" + am + " " +
+                        " AND " + FIELD_CATEGORY + "= \"" + category + "\" " +
+                        " AND " + FIELD_DESCRIPTION + "=" + "\"" + des + "\"", null);
+            }
+            else {
+                mDB.delete(DATABASE_TABLE, FIELD_DATE + "= \"" + date + "\" " +
+                        " AND " + FIELD_AMOUNT + "=" + am + " " +
+                        " AND " + FIELD_CATEGORY + "= \"" + category + "\" " +
+                        " AND " + FIELD_DESCRIPTION + "=" + "\"" + des + "\"", null);
+            }
 
         }
 

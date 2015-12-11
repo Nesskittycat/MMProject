@@ -56,7 +56,11 @@ public class MainActivity extends AppCompatActivity {
                 year = holder.substring(holder.length() - 4);
                 if (month.equals(Integer.toString(now.get(Calendar.MONTH) + 1))
                         && year.equals(Integer.toString(now.get(Calendar.YEAR)))) {
-                    spentAmount += Double.parseDouble(CR.getString(1));
+                    if (CR.getString(1).equals("")) {
+                    }
+                    else {
+                        spentAmount += Double.parseDouble(CR.getString(1));
+                    }
                 } else {
                     CR.getString(1);
                 }
@@ -74,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             spent = spent.replaceAll("\\.00", "");
             MoneySpentValueTextView.setText( spent);
         }
-        int resource_id= getResources().getIdentifier("logo", "drawable", getPackageName());
+        int resource_id= getResources().getIdentifier("bagmoney", "drawable", getPackageName());
 
         Drawable drawable = getResources().getDrawable(resource_id);
         p.setBackgroundColor(0);

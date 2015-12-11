@@ -102,7 +102,12 @@ public class HistoryActivity extends AppCompatActivity {
                                     do {
                                         if (j == pos) {
                                             date = c.getString(0);
-                                            am = Double.parseDouble(c.getString(1));
+                                            if(c.getString(1).equals("")) {
+                                                am = 0;
+                                            }
+                                            else {
+                                                am = Double.parseDouble(c.getString(1));
+                                            }
                                             category = c.getString(2);
                                             des = c.getString(3);
                                             j++;

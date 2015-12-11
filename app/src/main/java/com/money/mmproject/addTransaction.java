@@ -61,7 +61,12 @@ public class addTransaction extends AppCompatActivity {
                 values.put("transdate",df.format(c.getTime()));
                 values.put("category", categories.getSelectedItem().toString());
                 values.put("description", description.getText().toString());
-                values.put("amount", amount.getText().toString());
+                if (amount.getText().toString().equals("")) {
+                    values.put("amount", 0);
+                }
+                else {
+                    values.put("amount", amount.getText().toString());
+                }
                 sql.insert(values);
                 amount.setText("");
                 description.setText("");
