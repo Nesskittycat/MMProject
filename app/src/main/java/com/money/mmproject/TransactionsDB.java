@@ -64,7 +64,7 @@ public class TransactionsDB extends SQLiteOpenHelper {
             return CR;
         }
 
-        public void delete_byRow(String date, int am,String category, String des){
+        public void delete_byRow(String date, double am,String category, String des){
             System.out.println("CATEGORY: " + category );
             System.out.println("DATE: " + date);
             mDB.delete(DATABASE_TABLE, FIELD_DATE + "= \"" + date + "\" " +

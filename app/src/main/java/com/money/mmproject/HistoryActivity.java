@@ -89,7 +89,7 @@ public class HistoryActivity extends AppCompatActivity {
                         .setPositiveButton("Yes", new OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                int am = 0;
+                                double am = 0;
                                 String category = "";
                                 String des = "";
                                 String date = "";
@@ -102,7 +102,7 @@ public class HistoryActivity extends AppCompatActivity {
                                     do {
                                         if (j == pos) {
                                             date = c.getString(0);
-                                            am = Integer.parseInt(c.getString(1));
+                                            am = Double.parseDouble(c.getString(1));
                                             category = c.getString(2);
                                             des = c.getString(3);
                                             j++;
