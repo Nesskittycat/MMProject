@@ -1,7 +1,6 @@
 package com.money.mmproject;
 
 import android.content.Intent;
-//import android.database.Cursor;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,16 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-//import com.parse.Parse;
 import com.parse.ParseUser;
 
 
-//import com.parse.ParseObject;
 
 
 public class updateActivity extends AppCompatActivity {
-    private TransactionsDB db;
-    private UserProfileDBHandler userDB;
+
     private Button RegisterUserButton;
     private Button updateTransactionsButton;
     private Button logoutButton;
@@ -34,30 +30,7 @@ public class updateActivity extends AppCompatActivity {
         updateTransactionsButton = (Button) findViewById(R.id.UpdateTransactionsButton);
         RetrieveButton = (Button) findViewById(R.id.RetrieveButton);
         logoutButton = (Button) findViewById(R.id.LogOutButton);
-    /*    ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
-        */
 
-     /*   db = new TransactionsDB(getApplication());
-        userDB = new UserProfileDBHandler(getApplication());
-        Cursor CR = db.getInformation(db);
-        Cursor userCR = userDB.getInformation(userDB);
-        if (CR.moveToFirst()) {
-            do {
-                System.out.println("ddMMyyyyhhmmss: " + CR.getString(0) + " Amount: " + CR.getString(1) +
-                        " Category: " + CR.getString(2) + " Description: " + CR.getString(3));
-            } while (CR.moveToNext());
-        }
-
-        if(userCR.moveToFirst()) {
-            do {
-                System.out.println("user name " + userCR.getString(0) + " name: " + userCR.getString(1) +
-                        " income: " + userCR.getString(2) + " saving: " + userCR.getString(3) +
-                        " spending: " + userCR.getString(4));
-            } while (CR.moveToNext());
-        }
-        */
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if(currentUser == null || currentUser.getUsername() == null) {

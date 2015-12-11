@@ -1,5 +1,11 @@
 package com.money.mmproject;
 
+/*
+        Created by: Nessa Cheevasuchin
+                    Lukas Wygasch
+                    California State University of Long Beach
+                    Fall 2015
+ */
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -17,8 +23,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Calendar;
 
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         db = new TransactionsDB(getApplication());
         Cursor CR = db.getInformation(db);
         Calendar now = Calendar.getInstance();
-
+        //Iterate through the database and calculate the amount spent per month
         if (CR.moveToFirst()) {
             do {
                 String month = "";
@@ -65,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             MoneySpentValueTextView.setText("$ 0.00");
         }
         else{
+            //set the amount spent per month in currency form
             String spent = NumberFormat.getCurrencyInstance().format(spentAmount);
             spent = spent.replaceAll("\\.00", "");
             MoneySpentValueTextView.setText( spent);

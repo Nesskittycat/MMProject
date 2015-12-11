@@ -51,6 +51,7 @@ public class LoginSignupActivity  extends AppCompatActivity {
                             "The application is not connected to the Internet.",
                             Toast.LENGTH_SHORT).show();
                 }
+                //check user
                 ParseUser.logInInBackground(usernametxt, passwordtxt,
                         new LogInCallback() {
                             @Override
