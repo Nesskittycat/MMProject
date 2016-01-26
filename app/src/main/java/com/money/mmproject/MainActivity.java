@@ -16,6 +16,7 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println(holder.indexOf("/"));
                 month = holder.substring(0, holder.indexOf("/"));
                 year = holder.substring(holder.length() - 4);
+
+                //check if the Month is a single numerical value
+                if (now.get(Calendar.MONTH) < 10) {
+                    month = holder.substring(1, holder.indexOf("/"));
+                    //Log.d("Calendar Month", Integer.toString(now.get(Calendar.MONTH)));
+                    //Log.d("Month", month);
+                }
                 if (month.equals(Integer.toString(now.get(Calendar.MONTH) + 1))
                         && year.equals(Integer.toString(now.get(Calendar.YEAR)))) {
                     if (CR.getString(1).equals("")) {
@@ -71,12 +79,14 @@ public class MainActivity extends AppCompatActivity {
 
         if (spentAmount == 0) {
             MoneySpentValueTextView.setText("$ 0.00");
+
         }
         else{
             //set the amount spent per month in currency form
             String spent = NumberFormat.getCurrencyInstance().format(spentAmount);
             spent = spent.replaceAll("\\.00", "");
-            MoneySpentValueTextView.setText( spent);
+            MoneySpentValueTextView.setText(spent);
+
         }
         int resource_id= getResources().getIdentifier("bagmoney", "drawable", getPackageName());
 
