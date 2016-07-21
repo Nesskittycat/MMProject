@@ -4,8 +4,6 @@ Lukas Wygasch
 Nessa Cheevasuchin
 California State University of Long Beach
 
-Note: Ted Kim did not contribute any code to the project.
-
 1. Database Design - 1 Hour
 Discuss and think about with columns we need and how to create the statements.
 2. Presentation Design and Screenshots - 2Hour
